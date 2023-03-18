@@ -46,7 +46,7 @@ public class ContaBancaria {
 	 */
 	public void depositar(double valor) {
 		if(valor < 0) {
-			System.out.print("Valor invalido para deposito");
+			System.out.print("Valor invalido para deposito.");
 		}else {
 			this.saldo += valor;
 		}
@@ -66,14 +66,14 @@ public class ContaBancaria {
 	 * @param valor
 	 */
 	public void sacar(double valor) {
-		if(status != true) {
-			System.out.print("Conta inativa");
+		if(this.status != true) {
+			System.out.print("Conta inativa.");
 		}
 		if(valor <= 0) {
-			System.out.print("Valor inválido para saque");
+			System.out.print("Valor inválido para saque.");
 		}
 		if(valor > saldo) {
-			System.out.print("Saldo insuficiente");
+			System.out.print("Saldo insuficiente.");
 		}else {
 			this.saldo -= valor;
 		}
@@ -90,7 +90,7 @@ public class ContaBancaria {
 	 */
 	public void fecharConta() {
 		if(this.status != true) {
-			System.out.print("Conta ja inativa");
+			System.out.print("Conta ja inativa.");
 		}else if(this.saldo > 0) {
 			System.out.print("Conta com saldo. Nao eh possivel fecha-la.");
 		}else {
@@ -106,8 +106,9 @@ public class ContaBancaria {
 	public void reabrirConta() {
 		if(this.status != false) {
 			System.out.print("Conta já ativa.");
+		}else{
+			this.status = true;
 		}
-		
 	}
 
 	/**
@@ -131,7 +132,10 @@ public class ContaBancaria {
  		System.out.print("Conta de destino inativa.");
  	}else if(quantia < saldo) {
  		System.out.print("Saldo insuficiente para transferencia.");
- 	}
+ 	}else{
+     		this.saldo -= quantia;
+	     	destino.saldo += quantia;
+     	}
 	}
 
 	public int getNumeroConta() {
